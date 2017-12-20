@@ -7,7 +7,7 @@ public class ListNode
     public ListNode(int x) { val = x; }
 }
 
-public class Solution
+public class AddTwoNumbers02
 {
     /*static void Main(string[] args)
     {

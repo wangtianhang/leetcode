@@ -8,7 +8,7 @@ namespace leetCode
 {
     class _31Next_Permutation
     {
-        static void Main(string[] args)
+        static void Test()
         {
             _31Next_Permutation test = new _31Next_Permutation();
             int[] nums = new int[] { 1, 2, 3 };
@@ -19,7 +19,7 @@ namespace leetCode
                 Console.WriteLine(nums[i]);
             }
 
-            Console.Read();
+            //Console.Read();
         }
 
         public void NextPermutation(int[] nums)
