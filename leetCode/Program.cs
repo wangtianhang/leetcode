@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        _06ZigZag_Conversion.Test();
+        _587_Erect_the_Fence.Test();
 
         Console.ReadLine();
     }
