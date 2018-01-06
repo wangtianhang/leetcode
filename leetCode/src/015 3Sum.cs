@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace leetCode
 {
-    class _153Sum
+    class _15_3Sum
     {
         /*static void Main(string[] args)
         {

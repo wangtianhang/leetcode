@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 
-public class Solution1
+public class _001_TwoSum
 {
     /*static void Main(string[] args)
     {
