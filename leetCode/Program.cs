@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        _587_Erect_the_Fence.Test();
+        _398_Random_Pick_Index.Test();
 
         Console.ReadLine();
     }
