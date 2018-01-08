@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        //LRUCache.Test();
+        MinStack.Test();
 
         Console.ReadLine();
     }
