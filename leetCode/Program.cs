@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        _398_Random_Pick_Index.Test();
+        //LRUCache.Test();
 
         Console.ReadLine();
     }

@@ -69,6 +69,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\001 TwoSum.cs" />
+    <Compile Include="src\146 LRU Cache.cs" />
     <Compile Include="src\398 Random Pick Index.cs" />
     <Compile Include="src\587 Erect the Fence.cs" />
   </ItemGroup>
