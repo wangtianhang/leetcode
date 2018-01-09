@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-interface NestedInteger {
+public interface NestedInteger {
 
     // @return true if this NestedInteger holds a single integer, rather than a nested list.
     bool IsInteger();

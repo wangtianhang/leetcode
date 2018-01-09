@@ -44,6 +44,8 @@
     <Compile Include="srcNew\225 Implement Stack using Queues.cs" />
     <Compile Include="srcNew\232 Implement Queue using Stacks.cs" />
     <Compile Include="srcNew\295 Find Median from Data Stream.cs" />
+    <Compile Include="srcNew\341 Flatten Nested List Iterator.cs" />
+    <Compile Include="srcNew\355 Design Twitter.cs" />
     <Compile Include="src\006 ZigZag Conversion.cs" />
     <Compile Include="src\009 Palindrome Number.cs" />
     <Compile Include="src\010 Regular Expression Matching.cs" />

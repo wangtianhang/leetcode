@@ -29,13 +29,13 @@ public class MedianFinder
         Console.WriteLine(test.FindMedian());
     }
 
-    MaxPQ<int> m_left = null;
-    MinPQ<int> m_right = null;
+    MaxPQAnySize<int> m_left = null;
+    MinPQAnySize<int> m_right = null;
     /** initialize your data structure here. */
     public MedianFinder()
     {
-        m_left = new MaxPQ<int>(new IntComparer());
-        m_right = new MinPQ<int>(new IntComparer());
+        m_left = new MaxPQAnySize<int>(new IntComparer());
+        m_right = new MinPQAnySize<int>(new IntComparer());
     }
 
     public void AddNum(int num)
@@ -83,7 +83,7 @@ public class IntComparer : IComparer<int>
     }
 }
 
-public class PriorityQueue<T>
+public class PriorityQueueAnySize<T>
 {
     protected T[] m_pq = null;
     int m_n = 0;
@@ -92,13 +92,13 @@ public class PriorityQueue<T>
 
     public int m_max = 64;
 
-    public PriorityQueue( IComparer<T> comparer)
+    public PriorityQueueAnySize( IComparer<T> comparer)
     {
         m_pq = new T[m_max + 1];
         m_comparer = comparer;
     }
 
-    public PriorityQueue(IList<T> keys)
+    public PriorityQueueAnySize(IList<T> keys)
     {
         m_n = keys.Count;
         m_pq = new T[keys.Count + 1];
@@ -187,19 +187,13 @@ public class PriorityQueue<T>
     }
 }
 
-public class MinPQ<T> : PriorityQueue<T>
+public class MinPQAnySize<T> : PriorityQueueAnySize<T>
 {
-    public MinPQ(IComparer<T> comparer)
+    public MinPQAnySize(IComparer<T> comparer)
         : base(comparer)
     {
         m_pq = new T[m_max + 1];
         m_comparer = comparer;
-    }
-
-    public MinPQ(IList<T> keys)
-        : base(keys)
-    {
-
     }
 
     protected override bool less(int i, int j)
@@ -216,9 +210,9 @@ public class MinPQ<T> : PriorityQueue<T>
     }
 }
 
-public class MaxPQ<T> : PriorityQueue<T>
+public class MaxPQAnySize<T> : PriorityQueueAnySize<T>
 {
-    public MaxPQ(IComparer<T> comparer)
+    public MaxPQAnySize(IComparer<T> comparer)
         : base(comparer)
     {
         m_pq = new T[m_max + 1];
