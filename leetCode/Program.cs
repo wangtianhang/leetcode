@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Twitter.Test();
+        RandomizedSet.Test();
 
         Console.ReadLine();
     }
