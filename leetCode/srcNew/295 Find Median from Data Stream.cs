@@ -17,10 +17,15 @@ public class MedianFinder
     public static void Test()
     {
         MedianFinder test = new MedianFinder();
-        test.AddNum(1);
-        test.AddNum(2);
-        Console.WriteLine(test.FindMedian());
-        test.AddNum(3);
+        //test.AddNum(1);
+        //test.AddNum(2);
+        //Console.WriteLine(test.FindMedian());
+        //test.AddNum(3);
+        //Console.WriteLine(test.FindMedian());
+        for (int i = 0; i < 500; ++i )
+        {
+            test.AddNum(i);
+        }
         Console.WriteLine(test.FindMedian());
     }
 
@@ -110,7 +115,7 @@ public class PriorityQueue<T>
         {
             m_max *= 2;
             T[] newPQ = new T[m_max * 2 + 1];
-            Array.Copy(newPQ, m_pq, m_pq.Length);
+            Array.Copy(m_pq, newPQ, m_pq.Length);
             m_pq = newPQ;
         }
         m_pq[m_n] = a;
