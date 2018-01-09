@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        MedianFinder.Test();
+        Twitter.Test();
 
         Console.ReadLine();
     }
