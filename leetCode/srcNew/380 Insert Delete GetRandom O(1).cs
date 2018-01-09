@@ -9,7 +9,7 @@ public class RandomizedSet
     public static void Test()
     {
         RandomizedSet test = new RandomizedSet();
-        test.Insert(3);
+        /*test.Insert(3);
         test.Insert(-2);
         test.Remove(2);
         test.Insert(1);
@@ -28,7 +28,12 @@ public class RandomizedSet
         test.Insert(-2);
         test.Remove(0);
         test.Insert(-3);
-        test.Insert(1);
+        test.Insert(1);*/
+        test.Insert(0);
+        test.Remove(0);
+        test.Insert(-1);
+        test.Remove(0);
+        test.GetRandom();
     }
 
     Dictionary<int, int> m_dic = new Dictionary<int, int>();
@@ -62,13 +67,16 @@ public class RandomizedSet
         if(m_dic.ContainsKey(val))
         {
             int index = m_dic[val];
-            int key = m_set[m_set.Count - 1];
             m_dic.Remove(val);
 
-            m_set[index] = m_set[m_set.Count - 1];
+            if(index != m_set.Count - 1)
+            {
+                int key = m_set[m_set.Count - 1];
+                m_set[index] = m_set[m_set.Count - 1];
+                m_dic[key] = index;
+            }
             m_set.RemoveAt(m_set.Count - 1);
 
-            m_dic[key] = index;
             return true;
         }
         else
