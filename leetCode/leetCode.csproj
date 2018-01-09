@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="srcNew\225 Implement Stack using Queues.cs" />
     <Compile Include="src\006 ZigZag Conversion.cs" />
     <Compile Include="src\009 Palindrome Number.cs" />
     <Compile Include="src\010 Regular Expression Matching.cs" />
@@ -59,7 +60,7 @@
     <Compile Include="src\028 Implement strStr.cs" />
     <Compile Include="src\029 Divide Two Integers.cs" />
     <Compile Include="src\002 AddTwoNumbers.cs" />
-    <Compile Include="src\031 Next Permutation.cs" />
+    <Compile Include="srcNew\031 Next Permutation.cs" />
     <Compile Include="src\003 Longest Substring Without Repeating Characters.cs" />
     <Compile Include="src\004 Median of Two Sorted Arrays.cs" />
     <Compile Include="src\005 Longest Palindromic Substring.cs" />
@@ -69,10 +70,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\001 TwoSum.cs" />
-    <Compile Include="src\146 LRU Cache.cs" />
-    <Compile Include="src\155 Min Stack.cs" />
-    <Compile Include="src\398 Random Pick Index.cs" />
-    <Compile Include="src\587 Erect the Fence.cs" />
+    <Compile Include="srcNew\146 LRU Cache.cs" />
+    <Compile Include="srcNew\155 Min Stack.cs" />
+    <Compile Include="srcNew\398 Random Pick Index.cs" />
+    <Compile Include="srcNew\587 Erect the Fence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

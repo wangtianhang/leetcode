@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        MinStack.Test();
+        MyStack.Test();
 
         Console.ReadLine();
     }
