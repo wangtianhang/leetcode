@@ -76,7 +76,7 @@
     <Compile Include="srcNew\001 TwoSum.cs" />
     <Compile Include="srcNew\146 LRU Cache.cs" />
     <Compile Include="srcNew\155 Min Stack.cs" />
-    <Compile Include="srcNew\398 Random Pick Index.cs" />
+    <Compile Include="srcNew\398 Random Pick Index%28未测%29.cs" />
     <Compile Include="srcNew\587 Erect the Fence.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,26 +9,34 @@ public class Twitter
 {
     public static void Test()
     {
-        Twitter test = new Twitter();
-        test.PostTweet(1, 5);
-        foreach (var iter in test.GetNewsFeed(1))
+         Twitter test = new Twitter();
+//         test.PostTweet(1, 5);
+//         foreach (var iter in test.GetNewsFeed(1))
+//         {
+//             Console.Write(iter + ",");
+//         }
+//         Console.WriteLine();
+//         test.Follow(1, 2);
+//         test.PostTweet(2, 6);
+//         foreach (var iter in test.GetNewsFeed(1))
+//         {
+//             Console.Write(iter + ",");
+//         }
+//         Console.WriteLine();
+//         test.Unfollow(1, 2);
+//         foreach (var iter in test.GetNewsFeed(1))
+//         {
+//             Console.Write(iter + ",");
+//         }
+//         Console.WriteLine();
+         for (int i = 0; i < 11; ++i )
+         {
+             test.PostTweet(1, i);
+         }
+        foreach(var iter in test.GetNewsFeed(1))
         {
             Console.Write(iter + ",");
         }
-        Console.WriteLine();
-        test.Follow(1, 2);
-        test.PostTweet(2, 6);
-        foreach (var iter in test.GetNewsFeed(1))
-        {
-            Console.Write(iter + ",");
-        }
-        Console.WriteLine();
-        test.Unfollow(1, 2);
-        foreach (var iter in test.GetNewsFeed(1))
-        {
-            Console.Write(iter + ",");
-        }
-        Console.WriteLine();
     }
     class User
     {
@@ -107,10 +115,16 @@ public class Twitter
                     }
                 }
             }
+//             List<int> ret = new List<int>();
+//             while (maxTimeQueue.Size() != 0)
+//             {
+//                 ret.Add(maxTimeQueue.DeleteTop().m_id);
+//             }
+            List<NewData> maxTimeList = maxTimeQueue.GetAll();
             List<int> ret = new List<int>();
-            while (maxTimeQueue.Size() != 0)
+            foreach(var iter in maxTimeList)
             {
-                ret.Add(maxTimeQueue.DeleteTop().m_id);
+                ret.Add(iter.m_id);
             }
             return ret;
         }
@@ -148,21 +162,19 @@ public class Twitter
     }
 }
 
-public class PriorityQueueWithSize<T>
+public class PriorityQueue<T>
 {
     protected T[] m_pq = null;
     int m_n = 0;
 
     protected IComparer<T> m_comparer = null;
-    int m_max = 64;
 
-    public PriorityQueueWithSize(int max, IComparer<T> comparer)
+    public PriorityQueue(int max, IComparer<T> comparer)
     {
         m_comparer = comparer;
-        m_max = max;
     }
 
-    public PriorityQueueWithSize(IList<T> keys)
+    public PriorityQueue(IList<T> keys)
     {
         m_n = keys.Count;
         m_pq = new T[keys.Count + 1];
@@ -174,17 +186,15 @@ public class PriorityQueueWithSize<T>
 
     public void Insert(T a)
     {
-        if (m_n + 1 <= m_max)
-        {
-            ++m_n;
-            m_pq[m_n] = a;
-            Swim(m_n);
-        }
-        else
-        {
-            m_pq[m_max + 1] = a;
-            Swim(m_max + 1);
-        }
+        m_pq[++m_n] = a;
+        Swim(m_n);
+    }
+
+    public void ChangeTop(T a)
+    {
+        m_pq[1] = a;
+        Swim(1);
+        Sink(1);
     }
 
     public T Top()
@@ -252,13 +262,19 @@ public class PriorityQueueWithSize<T>
     }
 }
 
-public class MinPQWithSize<T> : PriorityQueueWithSize<T>
+public class MinPQ<T> : PriorityQueue<T>
 {
-    public MinPQWithSize(int max, IComparer<T> comparer)
+    public MinPQ(int max, IComparer<T> comparer)
         : base(max, comparer)
     {
-        m_pq = new T[max + 2];
+        m_pq = new T[max + 1];
         m_comparer = comparer;
+    }
+
+    public MinPQ(IList<T> keys)
+        : base(keys)
+    {
+
     }
 
     protected override bool less(int i, int j)
@@ -275,12 +291,12 @@ public class MinPQWithSize<T> : PriorityQueueWithSize<T>
     }
 }
 
-public class MaxPQWithSize<T> : PriorityQueueWithSize<T>
+public class MaxPQ<T> : PriorityQueue<T>
 {
-    public MaxPQWithSize(int max, IComparer<T> comparer)
+    public MaxPQ(int max, IComparer<T> comparer)
         : base(max, comparer)
     {
-        m_pq = new T[max + 2];
+        m_pq = new T[max + 1];
         m_comparer = comparer;
     }
 
@@ -295,6 +311,51 @@ public class MaxPQWithSize<T> : PriorityQueueWithSize<T>
         {
             return true;
         }
+    }
+}
+
+public class MaxPQWithSize<T>
+{
+    MinPQ<T> m_minPQ = null;
+    IComparer<T> m_comparer = null;
+    int m_max = 0;
+    public MaxPQWithSize(int max, IComparer<T> comparer)
+    {
+        //m_pq = new T[max + 2];
+        m_max = max;
+        m_minPQ = new MinPQ<T>(max, comparer);
+        m_comparer = comparer;
+    }
+
+    public int Size()
+    {
+        return m_minPQ.Size();
+    }
+
+    public void Insert(T a)
+    {
+        if (m_minPQ.Size() < m_max)
+        {
+            m_minPQ.Insert(a);
+        }
+        else
+        {
+            if (m_comparer.Compare(m_minPQ.Top(), a) < 0)
+            {
+                m_minPQ.ChangeTop(a);
+            }
+        }
+    }
+
+    public List<T> GetAll()
+    {
+        List<T> ret = new List<T>();
+        while(m_minPQ.Size() != 0)
+        {
+            ret.Add(m_minPQ.DeleteTop());
+        }
+        ret.Reverse();
+        return ret;
     }
 }
 
