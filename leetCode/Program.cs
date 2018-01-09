@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        MyStack.Test();
+        MedianFinder.Test();
 
         Console.ReadLine();
     }
