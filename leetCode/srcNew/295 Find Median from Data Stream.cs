@@ -90,7 +90,7 @@ public class PriorityQueue<T>
 
     protected IComparer<T> m_comparer = null;
 
-    public int m_max = 100;
+    public int m_max = 64;
 
     public PriorityQueue( IComparer<T> comparer)
     {
