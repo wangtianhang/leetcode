@@ -169,12 +169,19 @@ public class LFUCache
         cache.Put(3, 2);
         cache.Get(2);
         cache.Get(3);*/
-        LFUCache cache = new LFUCache(2);
+        /*LFUCache cache = new LFUCache(2);
         cache.Put(3, 1);
         cache.Put(2, 1);
         cache.Put(2, 2);
         cache.Put(4, 4);
-        cache.Get(2);
+        cache.Get(2);*/
+        LFUCache cache = new LFUCache(2);
+        cache.Put(2, 1);
+        cache.Put(1, 1);
+        cache.Put(2, 3);
+        cache.Put(4, 1);
+        Console.WriteLine(cache.Get(1));
+        Console.WriteLine(cache.Get(2));
     }
 
     public static void DebugState(LFUCache cache)
@@ -363,6 +370,38 @@ public class LFUCache
         else
         {
             m_valueDic[key].m_val = value;
+
+            FrequencyData frequencyData = m_valueDic[key].m_node.m_data as FrequencyData;
+            int newFrequency = frequencyData.m_frequency + 1;
+            frequencyData.m_dic.Remove(key);
+            Node oldNode = m_valueDic[key].m_node;
+
+            Node nextNode = m_valueDic[key].m_node.m_next;
+            // 队尾巴
+            if (nextNode == null)
+            {
+                Node node = m_doubleLinkedList.InsertNode(m_valueDic[key].m_node, new FrequencyData(newFrequency, key));
+                m_valueDic[key].m_node = node;
+            }
+            else
+            {
+                FrequencyData nextFrequencyData = nextNode.m_data as FrequencyData;
+                if (newFrequency == nextFrequencyData.m_frequency)
+                {
+                    nextFrequencyData.m_dic.Add(key, 0);
+                    m_valueDic[key].m_node = nextNode;
+                }
+                else if (newFrequency < nextFrequencyData.m_frequency)
+                {
+                    Node node = m_doubleLinkedList.InsertNode(m_valueDic[key].m_node, new FrequencyData(newFrequency, key));
+                    m_valueDic[key].m_node = node;
+                }
+            }
+
+            if (frequencyData.m_dic.Count == 0)
+            {
+                m_doubleLinkedList.RemoveNode(oldNode);
+            }
         }
     }
 }
