@@ -47,6 +47,7 @@
     <Compile Include="srcNew\341 Flatten Nested List Iterator.cs" />
     <Compile Include="srcNew\355 Design Twitter.cs" />
     <Compile Include="srcNew\380 Insert Delete GetRandom O%281%29.cs" />
+    <Compile Include="srcNew\381 Insert Delete GetRandom O%281%29 - Duplicates allowed.cs" />
     <Compile Include="src\006 ZigZag Conversion.cs" />
     <Compile Include="src\009 Palindrome Number.cs" />
     <Compile Include="src\010 Regular Expression Matching.cs" />
