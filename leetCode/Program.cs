@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        RandomizedSet.Test();
+        LFUCache.Test();
 
         Console.ReadLine();
     }
