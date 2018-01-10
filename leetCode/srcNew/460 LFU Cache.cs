@@ -124,8 +124,7 @@ public class LFUCache
 {
     public static void Test()
     {
-        LFUCache cache = new LFUCache(2 /* capacity */ );
-
+        /*LFUCache cache = new LFUCache(2);
         cache.Put(1, 1);
         Console.WriteLine("cache.Put(1, 1);");
         DebugState(cache);
@@ -162,6 +161,20 @@ public class LFUCache
         Console.WriteLine("cache.Get(4)");
         DebugState(cache);
         Console.WriteLine(ret);       // returns 4
+        */
+
+        /*LFUCache cache = new LFUCache(1);
+        cache.Put(2, 1);
+        cache.Get(2);
+        cache.Put(3, 2);
+        cache.Get(2);
+        cache.Get(3);*/
+        LFUCache cache = new LFUCache(2);
+        cache.Put(3, 1);
+        cache.Put(2, 1);
+        cache.Put(2, 2);
+        cache.Put(4, 4);
+        cache.Get(2);
     }
 
     public static void DebugState(LFUCache cache)
@@ -229,6 +242,11 @@ public class LFUCache
 
     public int Get(int key)
     {
+        if (m_capacity == 0)
+        {
+            return -1;
+        }
+
         if(m_valueDic.ContainsKey(key))
         {
             int val = m_valueDic[key].m_val;
@@ -274,6 +292,10 @@ public class LFUCache
 
     public void Put(int key, int value)
     {
+        if (m_capacity == 0)
+        {
+            return;
+        }
         if(!m_valueDic.ContainsKey(key))
         {
             if (m_n < m_capacity)
@@ -316,18 +338,31 @@ public class LFUCache
                     m_doubleLinkedList.RemoveNode(m_doubleLinkedList.m_first);
                 }
 
-                frequencyData = m_doubleLinkedList.m_first.m_data as FrequencyData;
-                if (frequencyData.m_frequency == 0)
-                {
-                    frequencyData.m_dic.Add(key, 0);
-                    m_valueDic.Add(key, new ValueData(value, m_doubleLinkedList.m_first));
-                }
-                else
+                if (m_doubleLinkedList.Count == 0)
                 {
                     Node node = m_doubleLinkedList.InsertNode(null, new FrequencyData(0, key));
                     m_valueDic.Add(key, new ValueData(value, node));
                 }
+                else
+                {
+                    frequencyData = m_doubleLinkedList.m_first.m_data as FrequencyData;
+                    if (frequencyData.m_frequency == 0)
+                    {
+                        frequencyData.m_dic.Add(key, 0);
+                        m_valueDic.Add(key, new ValueData(value, m_doubleLinkedList.m_first));
+                    }
+                    else
+                    {
+                        Node node = m_doubleLinkedList.InsertNode(null, new FrequencyData(0, key));
+                        m_valueDic.Add(key, new ValueData(value, node));
+                    }
+                }
+
             }
+        }
+        else
+        {
+            m_valueDic[key].m_val = value;
         }
     }
 }
