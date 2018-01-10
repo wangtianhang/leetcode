@@ -21,25 +21,6 @@ public class DoubleLinkedList
     public Node m_first = null;
     public int Count = 0;
 
-//     public int Count()
-//     {
-//         return m_count;
-//     }
-
-//     public void AddNodeAtFirst(System.Object data)
-//     {
-//         Node newNode = new Node();
-//         newNode.m_data = data;
-//         newNode.m_next = m_first;
-//         if(m_first != null)
-//         {
-//             newNode.m_prev = newNode;
-//         }
-//         m_first = newNode;
-// 
-//         Count++;
-//     }
-
     public void RemoveNode(Node node)
     {
         if(node == null)
@@ -102,24 +83,6 @@ public class DoubleLinkedList
             Count++;
             return newNode;
         }
-        // 独立节点
-//         else if(prev.m_prev == null
-//             && prev.m_next == null)
-//         {
-//             if(m_first == prev)
-//             {
-//                 Node newNode = new Node();
-//                 newNode.m_data = data;
-//                 m_first.m_next = newNode;
-//                 newNode.m_prev = m_first;
-//                 Count++;
-//                 return newNode;
-//             }
-//             else
-//             {
-//                 throw new Exception("InsertNode exception");
-//             }
-//         }
         // 队首
         else if (prev == null)
         {
@@ -203,16 +166,6 @@ public class LFUCache
 
     public static void DebugState(LFUCache cache)
     {
-//         foreach (var iter in cache.m_valueDic)
-//         {
-//             Console.WriteLine("dic " + iter.Key + " " + iter.Value);
-//         }
-//         FrequencyNode node = cache.m_first;
-//         while(node != null)
-//         {
-//             Console.WriteLine("linkedlist " + node);
-//             node = node.m_next;
-//         }
         foreach(var iter in cache.m_valueDic)
         {
             Console.WriteLine("dic " + iter.Key + " " + iter.Value);
@@ -225,41 +178,6 @@ public class LFUCache
             node = node.m_next;
         }
     }
-
-//     public class FrequencyNode
-//     {
-//         public int m_frequency = 0;
-//         public Dictionary<int, int> m_dic = new Dictionary<int, int>();
-//         public FrequencyNode m_prev = null;
-//         public FrequencyNode m_next = null;
-// 
-//         public override string ToString()
-//         {
-//             string keys = "";
-//             foreach(var iter in m_dic)
-//             {
-//                 keys += iter.Key + ",";
-//             }
-//             string ret = "frequency:" + m_frequency.ToString() + ",keys:" + keys;
-//             if(m_prev != null)
-//             {
-//                 ret += "prev:" + m_prev.m_frequency + ",";
-//             }
-//             else
-//             {
-//                 ret += "prev:null,";
-//             }
-//             if (m_next != null)
-//             {
-//                 ret += "next:" + m_next.m_frequency + ",";
-//             }
-//             else
-//             {
-//                 ret += "next:null,";
-//             }
-//             return ret;
-//         }
-//     }
 
     public class ValueData
     {
@@ -298,8 +216,6 @@ public class LFUCache
         }
     }
 
-    //public FrequencyNode m_first = null; // frequency从小到大 fist为小
-    //FrequencyNode m_last = null;
     public DoubleLinkedList m_doubleLinkedList = new DoubleLinkedList();
     public Dictionary<int, ValueData> m_valueDic = new Dictionary<int, ValueData>();
     public int m_capacity = 0;
