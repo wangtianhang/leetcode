@@ -9,9 +9,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        _8String_to_Integer.Test();
+        //Solution.Test();
 
         Console.ReadLine();
     }
 }
-
