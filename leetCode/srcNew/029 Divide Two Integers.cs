@@ -10,20 +10,19 @@ namespace leetCode
     {
         public int Divide(int dividend, int divisor)
         {
-            if(divisor == 0)
+            try
+            {
+                int ret = 0;
+                checked
+                {
+                    ret = dividend / divisor;
+                }
+                return ret;
+            }
+            catch (System.Exception ex)
             {
                 return int.MaxValue;
             }
-
-            int dividendIter = dividend;
-            int ret = 0;
-            while(dividendIter > divisor)
-            {
-                dividendIter -= divisor;
-                ret += 1;
-            }
-
-            return ret;
         }
     }
 }

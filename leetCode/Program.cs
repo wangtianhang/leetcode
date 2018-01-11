@@ -14,5 +14,3 @@ class Program
         Console.ReadLine();
     }
 }
-
-
