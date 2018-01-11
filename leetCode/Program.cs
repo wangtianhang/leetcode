@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        //LFUCache.Test();
+        AllOne.Test();
 
         Console.ReadLine();
     }
