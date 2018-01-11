@@ -38,7 +38,7 @@ namespace leetCode
             }
         }
 
-        public double FindMedianSortedArrays2(int[] nums1, int[] nums2)
+        /*public double FindMedianSortedArrays2(int[] nums1, int[] nums2)
         {
             int[] totalNums = CombineNums(nums1, nums2);
 
@@ -157,6 +157,6 @@ namespace leetCode
                     return elem2;
                 }
             }
-        }
+        }*/
     }
 }
