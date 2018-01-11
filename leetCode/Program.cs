@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        //Solution.Test();
+        _8String_to_Integer.Test();
 
         Console.ReadLine();
     }
