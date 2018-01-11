@@ -51,8 +51,9 @@
     <Compile Include="srcNew\381 Insert Delete GetRandom O%281%29 - Duplicates allowed.cs" />
     <Compile Include="srcNew\432 All O`one Data Structure.cs" />
     <Compile Include="srcNew\460 LFU Cache.cs" />
+    <Compile Include="srcNew\50 Pow%28x, n%29.cs" />
     <Compile Include="src\006 ZigZag Conversion.cs" />
-    <Compile Include="src\009 Palindrome Number.cs" />
+    <Compile Include="srcNew\009 Palindrome Number.cs" />
     <Compile Include="src\010 Regular Expression Matching.cs" />
     <Compile Include="src\011 Container With Most Water.cs" />
     <Compile Include="src\014 Longest Common Prefix.cs" />
@@ -68,12 +69,12 @@
     <Compile Include="src\027 Remove Element.cs" />
     <Compile Include="srcNew\028 Implement strStr.cs" />
     <Compile Include="srcNew\029 Divide Two Integers.cs" />
-    <Compile Include="src\002 AddTwoNumbers.cs" />
+    <Compile Include="srcNew\002 AddTwoNumbers.cs" />
     <Compile Include="srcNew\031 Next Permutation.cs" />
     <Compile Include="src\003 Longest Substring Without Repeating Characters.cs" />
     <Compile Include="src\004 Median of Two Sorted Arrays.cs" />
     <Compile Include="src\005 Longest Palindromic Substring.cs" />
-    <Compile Include="src\007 Reverse Integer.cs" />
+    <Compile Include="srcNew\007 Reverse Integer.cs" />
     <Compile Include="srcNew\008 String to Integer.cs" />
     <Compile Include="helper\combineTeplate.cs" />
     <Compile Include="Program.cs" />
