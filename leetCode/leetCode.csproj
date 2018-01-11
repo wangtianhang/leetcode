@@ -48,6 +48,7 @@
     <Compile Include="srcNew\204 Count Primes.cs" />
     <Compile Include="srcNew\224 Basic Calculator.cs" />
     <Compile Include="srcNew\225 Implement Stack using Queues.cs" />
+    <Compile Include="srcNew\231 Power of Two.cs" />
     <Compile Include="srcNew\232 Implement Queue using Stacks.cs" />
     <Compile Include="srcNew\295 Find Median from Data Stream.cs" />
     <Compile Include="srcNew\341 Flatten Nested List Iterator.cs" />
