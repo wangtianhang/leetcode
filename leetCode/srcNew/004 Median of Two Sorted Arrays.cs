@@ -18,8 +18,27 @@ namespace leetCode
 
             Console.ReadLine();
         }*/
+        public double FindMedianSortedArrays2(int[] nums1, int[] nums2)
+        {
+            int[] totalNums = new int[nums1.Length + nums2.Length];
+            Array.Copy(nums1, totalNums, nums1.Length);
+            Array.Copy(nums2, 0, totalNums, nums1.Length, nums2.Length);
+            Array.Sort(totalNums);
 
-        public double FindMedianSortedArrays(int[] nums1, int[] nums2)
+            if (totalNums.Length % 2 == 1)
+            {
+                int index = totalNums.Length / 2;
+                return totalNums[index];
+            }
+            else
+            {
+                int index1 = totalNums.Length / 2 - 1;
+                int index2 = totalNums.Length / 2;
+                return (totalNums[index1] + totalNums[index2]) / 2.0f;
+            }
+        }
+
+        public double FindMedianSortedArrays2(int[] nums1, int[] nums2)
         {
             int[] totalNums = CombineNums(nums1, nums2);
 
