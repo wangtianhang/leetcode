@@ -10,7 +10,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        _070_Climbing_Stairs.Test();
+        _300_Longest_Increasing_Subsequence.Test();
 
         Console.ReadLine();
     }
