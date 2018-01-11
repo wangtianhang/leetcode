@@ -9,8 +9,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        AllOne.Test();
+        //Solution.Test();
 
         Console.ReadLine();
     }
 }
+
