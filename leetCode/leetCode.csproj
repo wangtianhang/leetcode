@@ -51,6 +51,7 @@
     <Compile Include="srcNew\231 Power of Two.cs" />
     <Compile Include="srcNew\232 Implement Queue using Stacks.cs" />
     <Compile Include="srcNew\295 Find Median from Data Stream.cs" />
+    <Compile Include="srcNew\326 Power of Three.cs" />
     <Compile Include="srcNew\341 Flatten Nested List Iterator.cs" />
     <Compile Include="srcNew\355 Design Twitter.cs" />
     <Compile Include="srcNew\380 Insert Delete GetRandom O%281%29.cs" />
