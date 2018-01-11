@@ -4,449 +4,181 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class Node
+class Node
 {
-    public System.Object m_data = null;
-    public Node m_prev = null;
-    public Node m_next = null;
+    public int key;
+    public int value;
+    public int frequency = 0; //访问次数
+    public Node next; //下一元素
+    public Node prev; //前一元素
+    public NodeQueue nq;  //所属的外层链表元素
 
-    public override string ToString()
+    public Node(int key, int value)
     {
-        return m_data.ToString(); 
+        this.key = key;
+        this.value = value;
     }
 }
 
-public class DoubleLinkedList
+class NodeQueue
 {
-    public Node m_first = null;
-    public int Count = 0;
+    public NodeQueue next; //下一元素
+    public NodeQueue prev;  //前一元素
+    public Node tail;  //尾部Node
+    public Node head;  //头部Node
 
-    public void RemoveNode(Node node)
+    public NodeQueue(NodeQueue next, NodeQueue prev, Node tail, Node head)
     {
-        if(node == null)
-        {
-            return;
-        }
-        //独立节点
-        if(node.m_next == null
-            && node.m_prev == null)
-        {
-            if(node == m_first)
-            {
-                m_first = null;
-                Count--;
-            }
-            else
-            {
-                throw new Exception("RemoveNode exception");
-            }
-            return;
-        }
-        //队尾
-        if(node.m_next == null
-            && node.m_prev != null)
-        {
-            node.m_prev.m_next = null;
-            Count--;
-            return;
-        }
-        // 队首
-        if(node.m_prev == null
-            && node.m_next != null)
-        {
-            node.m_next.m_prev = null;
-            m_first = node.m_next;
-            Count--;
-            return;
-        }
-        // 队中间
-        if (node.m_prev != null
-            && node.m_next != null)
-        {
-            node.m_next.m_prev = node.m_prev;
-            node.m_prev.m_next = node.m_next;
-            Count--;
-            return;
-        }
-
-        
-    }
-
-    public Node InsertNode(Node prev, System.Object data)
-    {
-        // 无节点
-        if(m_first == null)
-        {
-            Node newNode = new Node();
-            newNode.m_data = data;
-            m_first = newNode;
-            Count++;
-            return newNode;
-        }
-        // 队首
-        else if (prev == null)
-        {
-            Node newNode = new Node();
-            newNode.m_data = data;
-            newNode.m_next = m_first;
-            m_first.m_prev = newNode;
-            m_first = newNode;
-            Count++;
-            return newNode;
-        }
-        // 队尾
-        else if(prev.m_next == null)
-        {
-            Node newNode = new Node();
-            newNode.m_data = data;
-            newNode.m_prev = prev;
-            prev.m_next = newNode;
-            Count++;
-            return newNode;
-        }
-        // 队中间
-        else
-        {
-            Node newNode = new Node();
-            newNode.m_data = data;
-            newNode.m_prev = prev;
-            newNode.m_next = prev.m_next;
-            prev.m_next = newNode;
-            newNode.m_next.m_prev = newNode;
-            Count++;
-            return newNode;
-        }
-        
+        this.next = next;
+        this.prev = prev;
+        this.tail = tail;
+        this.head = head;
     }
 }
 
 public class LFUCache
 {
-    public static void Test()
-    {
-        /*LFUCache cache = new LFUCache(2);
-        cache.Put(1, 1);
-        Console.WriteLine("cache.Put(1, 1);");
-        DebugState(cache);
-        cache.Put(2, 2);
-        Console.WriteLine("cache.Put(2, 2);");
-        DebugState(cache);
-        int ret = cache.Get(1);
-        Console.WriteLine("cache.Get(1);");
-        DebugState(cache);
-        Console.WriteLine(ret);       // returns 1
-        cache.Put(3, 3);    // evicts key 2
-        Console.WriteLine("cache.Put(3, 3);");
-        DebugState(cache);
-        ret = cache.Get(2);
-        Console.WriteLine("cache.Get(2);");
-        DebugState(cache);
-        Console.WriteLine(ret);       // returns -1 (not found)
-        ret = cache.Get(3);
-        Console.WriteLine("cache.Get(3);");
-        DebugState(cache);
-        Console.WriteLine(ret);       // returns 3.
-        cache.Put(4, 4);    // evicts key 1.
-        Console.WriteLine("cache.Put(4, 4);");
-        DebugState(cache);
-        ret = cache.Get(1);
-        Console.WriteLine("cache.Get(1)");
-        DebugState(cache);
-        Console.WriteLine(ret);       // returns -1 (not found)
-        ret = cache.Get(3);
-        Console.WriteLine("cache.Get(3)");
-        DebugState(cache);
-        Console.WriteLine(ret);       // returns 3
-        ret = cache.Get(4);
-        Console.WriteLine("cache.Get(4)");
-        DebugState(cache);
-        Console.WriteLine(ret);       // returns 4
-        */
-
-        /*LFUCache cache = new LFUCache(1);
-        cache.Put(2, 1);
-        cache.Get(2);
-        cache.Put(3, 2);
-        cache.Get(2);
-        cache.Get(3);*/
-        /*LFUCache cache = new LFUCache(2);
-        cache.Put(3, 1);
-        cache.Put(2, 1);
-        cache.Put(2, 2);
-        cache.Put(4, 4);
-        cache.Get(2);*/
-        /*LFUCache cache = new LFUCache(2);
-        cache.Put(2, 1);
-        cache.Put(1, 1);
-        cache.Put(2, 3);
-        cache.Put(4, 1);
-        Console.WriteLine(cache.Get(1));
-        Console.WriteLine(cache.Get(2));*/
-
-        LFUCache cache = new LFUCache(10);
-        string[] op = new string[] { "put", "put", "put", "put", "put", "get", "put", "get", "get", "put", "get", "put", "put", "put", "get", "put", "get", "get", "get", "get", "put", "put", "get", "get", "get", "put", "put", "get", "put", "get", "put", "get", "get", "get", "put", "put", "put", "get", "put", "get", "get", "put", "put", "get", "put", "put", "put", "put", "get", "put", "put", "get", "put", "put", "get", "put", "put", "put", "put", "put", "get", "put", "put", "get", "put", "get", "get", "get", "put", "get", "get", "put", "put", "put", "put", "get", "put", "put", "put", "put", "get", "get", "get", "put", "put", "put", "get", "put", "put", "put", "get", "put", "put", "put", "get", "get", "get", "put", "put", "put", "put", "get", "put", "put", "put", "put", "put", "put", "put" };
-        string opParam = "[10,13],[3,17],[6,11],[10,5],[9,10],[13],[2,19],[2],[3],[5,25],[8],[9,22],[5,5],[1,30],[11],[9,12],[7],[5],[8],[9],[4,30],[9,3],[9],[10],[10],[6,14],[3,1],[3],[10,11],[8],[2,14],[1],[5],[4],[11,4],[12,24],[5,18],[13],[7,23],[8],[12],[3,27],[2,12],[5],[2,9],[13,4],[8,18],[1,7],[6],[9,29],[8,21],[5],[6,30],[1,12],[10],[4,15],[7,22],[11,26],[8,17],[9,29],[5],[3,4],[11,30],[12],[4,29],[3],[9],[6],[3,4],[1],[10],[3,29],[10,28],[1,20],[11,13],[3],[3,12],[3,8],[10,9],[3,26],[8],[7],[5],[13,17],[2,27],[11,15],[12],[9,19],[2,15],[3,16],[1],[12,17],[9,1],[6,19],[4],[5],[5],[8,1],[11,7],[5,2],[9,28],[1],[2,2],[7,4],[4,22],[7,24],[9,26],[13,28],[11,26]";
-        opParam = opParam.Replace("[", "").Replace("]", "");
-        List<int> opParamList = new List<int>();
-        string[] opParamSub = opParam.Split(',');
-        foreach(var iter in opParamSub)
-        {
-            opParamList.Add(int.Parse(iter));
-        }
-        //string[] opParamSub = opParam.Split(',');
-        for (int i = 0; i < op.Length; ++i)
-        {
-            string iter = op[i];
-            if (iter == "put")
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("cache.Put " + opParamList[0] + " " + opParamList[1]);
-                Console.ForegroundColor = ConsoleColor.White;
-                cache.Put(opParamList[0], opParamList[1]);
-                DebugState(cache);
-                opParamList.RemoveAt(0);
-                opParamList.RemoveAt(0);
-                
-            }
-            else if (iter == "get")
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("cache.Get " + opParamList[0]);
-                Console.ForegroundColor = ConsoleColor.White;
-
-                cache.Get(opParamList[0]);
-                DebugState(cache);
-                opParamList.RemoveAt(0);
-            }
-        }
-    }
-
-    public static void DebugState(LFUCache cache)
-    {
-        foreach(var iter in cache.m_valueDic)
-        {
-            Console.WriteLine("dic " + iter.Key + " " + iter.Value);
-        }
-        Node node = cache.m_doubleLinkedList.m_first;
-        while(node != null)
-        {
-            
-            Console.WriteLine("linkedlist " + node);
-            node = node.m_next;
-        }
-    }
-
-    public class ValueData
-    {
-        public ValueData(int val, Node node)
-        {
-            m_val = val;
-            m_node = node;
-        }
-        public int m_val = 0;
-        public Node m_node = null;
-
-        public override string ToString()
-        {
-            return "value:" + m_val.ToString() + ", " + m_node.ToString();
-        }
-    }
-
-    public class FrequencyData
-    {
-        public FrequencyData(int frequency, int key)
-        {
-            m_frequency = frequency;
-            m_dic.Add(key, 0);
-        }
-        public int m_frequency = 0;
-        public Dictionary<int, int> m_dic = new Dictionary<int, int>();
-
-        public override string ToString()
-        {
-            string ret = "";
-            foreach(var iter in m_dic)
-            {
-                ret += iter.Key.ToString() + ",";
-            }
-            return "frequency:" + m_frequency.ToString() + " keys:" + ret;
-        }
-    }
-
-    public DoubleLinkedList m_doubleLinkedList = new DoubleLinkedList();
-    public Dictionary<int, ValueData> m_valueDic = new Dictionary<int, ValueData>();
-    public int m_capacity = 0;
-    public int m_n = 0;
-
+    private NodeQueue tail;  //链表尾部的NodeQueue
+    private int capacity;  //容量
+    private Dictionary<int, Node> map = new Dictionary<int, Node>();  //存储key-value对的HashMap
 
     public LFUCache(int capacity)
     {
-        m_capacity = capacity;
+        this.capacity = capacity;
+    }
+
+    private void oneStepUp(Node n)
+    {
+        n.frequency++; //访问次数+1
+        bool singleNodeQ = false; //为true时，代表此NodeQueue中只有一个Node元素
+        if (n.nq.head == n.nq.tail)
+            singleNodeQ = true;
+        if (n.nq.next != null)
+        {
+            if (n.nq.next.tail.frequency == n.frequency)
+            {
+                //右侧NodeQueue的访问次数与Node当前访问次数一样，将此Node置于右侧NodeQueue的头部
+                removeNode(n); //从当前NodeQueue中删除Node
+                //把Node插入到右侧NodeQueue的头部
+                n.prev = n.nq.next.head;
+                n.nq.next.head.next = n;
+                n.nq.next.head = n;
+                n.nq = n.nq.next;
+            }
+            else if (n.nq.next.tail.frequency > n.frequency)
+            {
+                //右侧NodeQueue的访问次数大于Node当前访问次数，则需要在两个NodeQueue之间插入一个新的NodeQueue
+                if (!singleNodeQ)
+                {
+                    removeNode(n);
+                    NodeQueue nnq = new NodeQueue(n.nq.next, n.nq, n, n);
+                    n.nq.next.prev = nnq;
+                    n.nq.next = nnq;
+                    n.nq = nnq;
+                }
+                //如果当前NodeQueue中只有一个Node，那么其实不需要任何额外操作了
+            }
+        }
+        else
+        {
+            //此NodeQueue的next == null，说明此NodeQueue已经位于外层链表头部了，这时候需要往外侧链表头部插入一个新的NodeQueue
+            if (!singleNodeQ)
+            {
+                removeNode(n);
+                NodeQueue nnq = new NodeQueue(null, n.nq, n, n);
+                n.nq.next = nnq;
+                n.nq = nnq;
+            }
+            //同样地，如果当前NodeQueue中只有一个Node，不需要任何额外操作
+        }
+    }
+
+    private Node removeNode(Node n)
+    {
+        //如果NodeQueue中只有一个Node，那么移除整个NodeQueue
+        if (n.nq.head == n.nq.tail)
+        {
+            removeNQ(n.nq);
+            return n;
+        }
+        if (n.prev != null)
+            n.prev.next = n.next;
+        if (n.next != null)
+            n.next.prev = n.prev;
+        if (n.nq.head == n)
+            n.nq.head = n.prev;
+        if (n.nq.tail == n)
+            n.nq.tail = n.next;
+        n.prev = null;
+        n.next = null;
+        return n;
+    }
+
+    private void removeNQ(NodeQueue nq)
+    {
+        if (nq.prev != null)
+            nq.prev.next = nq.next;
+        if (nq.next != null)
+            nq.next.prev = nq.prev;
+        if (this.tail == nq)
+            this.tail = nq.next;
     }
 
     public int Get(int key)
     {
-        if (m_capacity == 0)
-        {
+        Node n = null;
+        map.TryGetValue(key, out n);
+        if (n == null)
             return -1;
-        }
-
-        if(m_valueDic.ContainsKey(key))
-        {
-            int val = m_valueDic[key].m_val;
-
-            FrequencyData frequencyData = m_valueDic[key].m_node.m_data as FrequencyData;
-            int newFrequency = frequencyData.m_frequency + 1;
-            frequencyData.m_dic.Remove(key);
-            Node oldNode = m_valueDic[key].m_node;
-
-            Node nextNode = m_valueDic[key].m_node.m_next;
-            // 队尾巴
-            if (nextNode == null)
-            {
-                Node node = m_doubleLinkedList.InsertNode(m_valueDic[key].m_node, new FrequencyData(newFrequency, key));
-                m_valueDic[key].m_node = node;
-            }
-            else
-            {
-                FrequencyData nextFrequencyData = nextNode.m_data as FrequencyData;
-                if(newFrequency == nextFrequencyData.m_frequency)
-                {
-                    nextFrequencyData.m_dic.Add(key, 0);
-                    m_valueDic[key].m_node = nextNode;
-                }
-                else if (newFrequency < nextFrequencyData.m_frequency)
-                {
-                    Node node = m_doubleLinkedList.InsertNode(m_valueDic[key].m_node, new FrequencyData(newFrequency, key));
-                    m_valueDic[key].m_node = node;
-                }
-            }
-
-            if (frequencyData.m_dic.Count == 0)
-            {
-                m_doubleLinkedList.RemoveNode(oldNode);
-            }
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(val);
-            Console.ForegroundColor = ConsoleColor.White;
-            return val;
-        }
-        else
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(-1);
-            Console.ForegroundColor = ConsoleColor.White;
-            return -1;
-        }
+        oneStepUp(n);
+        return n.value;
     }
 
     public void Put(int key, int value)
     {
-        if (m_capacity == 0)
+        if (capacity == 0)
+            return;
+
+        Node cn = null;
+        map.TryGetValue(key, out cn);
+        //key已存在的情况下，更新value值，并将Node右移
+        if (cn != null)
         {
+            cn.value = value;
+            oneStepUp(cn);
             return;
         }
-        if(!m_valueDic.ContainsKey(key))
+        //cache已满的情况下，把外层链表尾部的内层链表的尾部Node移除
+        if (map.Count == capacity)
         {
-            if (m_n < m_capacity)
-            {
-                m_n += 1;
-                if(m_doubleLinkedList.Count == 0)
-                {
-                    Node node = m_doubleLinkedList.InsertNode(null, new FrequencyData(0, key));
-                    m_valueDic.Add(key, new ValueData(value, node));
-                }
-                else
-                {
-                    FrequencyData frequencyData = m_doubleLinkedList.m_first.m_data as FrequencyData;
-                    if (frequencyData.m_frequency == 0)
-                    {
-                        frequencyData.m_dic.Add(key, 0);
-                        m_valueDic.Add(key, new ValueData(value, m_doubleLinkedList.m_first));
-                    }
-                    else
-                    {
-                        Node node = m_doubleLinkedList.InsertNode(null, new FrequencyData(0, key));
-                        m_valueDic.Add(key, new ValueData(value, node));
-                    }
-                }
-            }
-            else
-            {
-                FrequencyData frequencyData = m_doubleLinkedList.m_first.m_data as FrequencyData;
-                int firstKey = -1;
-                // todo 此处的时间复杂度？看c#源码应该是个array
-                foreach(var iter in frequencyData.m_dic)
-                {
-                    firstKey = iter.Key;
-                    break;
-                }
-                frequencyData.m_dic.Remove(firstKey);
-                m_valueDic.Remove(firstKey);
-                Console.WriteLine("remove firstKey " + firstKey + " frequency " + frequencyData.m_frequency);
-                if(frequencyData.m_dic.Count == 0)
-                {
-                    m_doubleLinkedList.RemoveNode(m_doubleLinkedList.m_first);
-                }
-
-                if (m_doubleLinkedList.Count == 0)
-                {
-                    Node node = m_doubleLinkedList.InsertNode(null, new FrequencyData(0, key));
-                    m_valueDic.Add(key, new ValueData(value, node));
-                }
-                else
-                {
-                    frequencyData = m_doubleLinkedList.m_first.m_data as FrequencyData;
-                    if (frequencyData.m_frequency == 0)
-                    {
-                        frequencyData.m_dic.Add(key, 0);
-                        m_valueDic.Add(key, new ValueData(value, m_doubleLinkedList.m_first));
-                    }
-                    else
-                    {
-                        Node node = m_doubleLinkedList.InsertNode(null, new FrequencyData(0, key));
-                        m_valueDic.Add(key, new ValueData(value, node));
-                    }
-                }
-
-            }
+            map.Remove(removeNode(this.tail.tail).key);
+        }
+        //插入新的Node
+        Node n = new Node(key, value);
+        if (this.tail == null)
+        {
+            //tail为null说明此时cache中没有元素，直接把Node封装到NodeQueue里加入
+            NodeQueue nq = new NodeQueue(null, null, n, n);
+            this.tail = nq;
+            n.nq = nq;
+        }
+        else if (this.tail.tail.frequency == 0)
+        {
+            //外层链表尾部元素的访问次数是0，那么将Node加入到外层链表尾部元素的头部
+            n.prev = this.tail.head;
+            this.tail.head.next = n;
+            n.nq = this.tail;
+            this.tail.head = n;
         }
         else
         {
-            m_valueDic[key].m_val = value;
-
-            FrequencyData frequencyData = m_valueDic[key].m_node.m_data as FrequencyData;
-            int newFrequency = frequencyData.m_frequency + 1;
-            frequencyData.m_dic.Remove(key);
-            Node oldNode = m_valueDic[key].m_node;
-
-            Node nextNode = m_valueDic[key].m_node.m_next;
-            // 队尾巴
-            if (nextNode == null)
-            {
-                Node node = m_doubleLinkedList.InsertNode(m_valueDic[key].m_node, new FrequencyData(newFrequency, key));
-                m_valueDic[key].m_node = node;
-            }
-            else
-            {
-                FrequencyData nextFrequencyData = nextNode.m_data as FrequencyData;
-                if (newFrequency == nextFrequencyData.m_frequency)
-                {
-                    nextFrequencyData.m_dic.Add(key, 0);
-                    m_valueDic[key].m_node = nextNode;
-                }
-                else if (newFrequency < nextFrequencyData.m_frequency)
-                {
-                    Node node = m_doubleLinkedList.InsertNode(m_valueDic[key].m_node, new FrequencyData(newFrequency, key));
-                    m_valueDic[key].m_node = node;
-                }
-            }
-
-            if (frequencyData.m_dic.Count == 0)
-            {
-                m_doubleLinkedList.RemoveNode(oldNode);
-            }
+            //外层链表尾部元素的访问次数不是0，那么实例化一个只包含此Node的NodeQueue，加入外层链表尾部
+            NodeQueue nq = new NodeQueue(this.tail, null, n, n);
+            this.tail.prev = nq;
+            this.tail = nq;
+            n.nq = nq;
         }
+        //最后把key和Node存入HashMap中
+        map.Add(key, n);
     }
 }
