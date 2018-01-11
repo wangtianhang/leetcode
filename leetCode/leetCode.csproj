@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="srcNew\044 Wildcard Matching.cs" />
     <Compile Include="srcNew\168 Excel Sheet Column Title.cs" />
     <Compile Include="srcNew\171 Excel Sheet Column Number.cs" />
     <Compile Include="srcNew\172 Factorial Trailing Zeroes.cs" />
@@ -64,7 +65,7 @@
     <Compile Include="srcNew\069 Sqrt%28x%29.cs" />
     <Compile Include="src\006 ZigZag Conversion.cs" />
     <Compile Include="srcNew\009 Palindrome Number.cs" />
-    <Compile Include="src\010 Regular Expression Matching.cs" />
+    <Compile Include="srcNew\010 Regular Expression Matching.cs" />
     <Compile Include="src\011 Container With Most Water.cs" />
     <Compile Include="src\014 Longest Common Prefix.cs" />
     <Compile Include="src\015 3Sum.cs" />
@@ -82,7 +83,7 @@
     <Compile Include="srcNew\002 AddTwoNumbers.cs" />
     <Compile Include="srcNew\031 Next Permutation.cs" />
     <Compile Include="src\003 Longest Substring Without Repeating Characters.cs" />
-    <Compile Include="src\004 Median of Two Sorted Arrays.cs" />
+    <Compile Include="srcNew\004 Median of Two Sorted Arrays.cs" />
     <Compile Include="src\005 Longest Palindromic Substring.cs" />
     <Compile Include="srcNew\007 Reverse Integer.cs" />
     <Compile Include="srcNew\008 String to Integer.cs" />
