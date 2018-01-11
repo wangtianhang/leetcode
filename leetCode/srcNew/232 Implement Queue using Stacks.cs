@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Text;
-using System.Threading.Tasks;
+
 
 
 public class MyQueue
@@ -29,9 +29,9 @@ public class MyQueue
             throw new System.Exception("can not dequeue");
         }
 
-        if (m_stackA.Count() == 0)
+        if (m_stackA.Count == 0)
         {
-            while (m_stackB.Count() != 0)
+            while (m_stackB.Count != 0)
             {
                 m_stackA.Push(m_stackB.Pop());
             }
@@ -47,9 +47,9 @@ public class MyQueue
             throw new System.Exception("can not dequeue");
         }
 
-        if (m_stackA.Count() == 0)
+        if (m_stackA.Count == 0)
         {
-            while (m_stackB.Count() != 0)
+            while (m_stackB.Count != 0)
             {
                 m_stackA.Push(m_stackB.Pop());
             }

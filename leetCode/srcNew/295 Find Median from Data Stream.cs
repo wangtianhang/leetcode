@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Text;
-using System.Threading.Tasks;
+
 
 /// <summary>
 /// 还可以将数字分为左右两部分，左半部分存储小的一半数字，右半部分存储大的一半数字，
