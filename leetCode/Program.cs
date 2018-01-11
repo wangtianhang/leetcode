@@ -10,7 +10,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        _044_Wildcard_Matching.Test();
+        _070_Climbing_Stairs.Test();
 
         Console.ReadLine();
     }

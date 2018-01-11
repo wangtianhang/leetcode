@@ -64,6 +64,7 @@
     <Compile Include="srcNew\050 Pow%28x, n%29.cs" />
     <Compile Include="srcNew\065 Valid Number.cs" />
     <Compile Include="srcNew\069 Sqrt%28x%29.cs" />
+    <Compile Include="srcNew\070 Climbing Stairs.cs" />
     <Compile Include="src\006 ZigZag Conversion.cs" />
     <Compile Include="srcNew\009 Palindrome Number.cs" />
     <Compile Include="srcNew\010 Regular Expression Matching.cs" />
