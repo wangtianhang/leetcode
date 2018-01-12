@@ -54,6 +54,7 @@
     <Compile Include="srcNew\232 Implement Queue using Stacks.cs" />
     <Compile Include="srcNew\295 Find Median from Data Stream.cs" />
     <Compile Include="srcNew\300 Longest Increasing Subsequence.cs" />
+    <Compile Include="srcNew\303 Range Sum Query - Immutable.cs" />
     <Compile Include="srcNew\326 Power of Three.cs" />
     <Compile Include="srcNew\341 Flatten Nested List Iterator.cs" />
     <Compile Include="srcNew\355 Design Twitter.cs" />
