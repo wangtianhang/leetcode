@@ -10,7 +10,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        _300_Longest_Increasing_Subsequence.Test();
+        _322_Coin_Change.Test();
 
         Console.ReadLine();
     }
