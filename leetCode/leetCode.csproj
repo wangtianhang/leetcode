@@ -71,7 +71,7 @@
     <Compile Include="nouse\006 ZigZag Conversion.cs" />
     <Compile Include="nouse\009 Palindrome Number.cs" />
     <Compile Include="srcNew\010 Regular Expression Matching.cs" />
-    <Compile Include="srcNew\011 Container With Most Water.cs" />
+    <Compile Include="forget\011 Container With Most Water.cs" />
     <Compile Include="nouse\014 Longest Common Prefix.cs" />
     <Compile Include="srcNew\015 3Sum.cs" />
     <Compile Include="srcNew\016 3Sum Closest.cs" />
@@ -79,7 +79,7 @@
     <Compile Include="nouse\019 Remove Nth Node From End of List.cs" />
     <Compile Include="srcNew\020 Valid Parentheses.cs" />
     <Compile Include="nouse\021 Merge Two Sorted Lists.cs" />
-    <Compile Include="srcNew\022 Generate Parentheses.cs" />
+    <Compile Include="forget\022 Generate Parentheses.cs" />
     <Compile Include="nouse\023 Merge k Sorted Lists.cs" />
     <Compile Include="srcNew\026 Remove Duplicates from Sorted Array.cs" />
     <Compile Include="srcNew\027 Remove Element.cs" />
@@ -87,7 +87,7 @@
     <Compile Include="nouse\029 Divide Two Integers.cs" />
     <Compile Include="nouse\002 AddTwoNumbers.cs" />
     <Compile Include="srcNew\031 Next Permutation.cs" />
-    <Compile Include="srcNew\003 Longest Substring Without Repeating Characters.cs" />
+    <Compile Include="forget\003 Longest Substring Without Repeating Characters.cs" />
     <Compile Include="srcNew\004 Median of Two Sorted Arrays.cs" />
     <Compile Include="nouse\005 Longest Palindromic Substring.cs" />
     <Compile Include="nouse\007 Reverse Integer.cs" />
@@ -104,9 +104,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
