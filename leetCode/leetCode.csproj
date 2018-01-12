@@ -73,9 +73,9 @@
     <Compile Include="srcNew\010 Regular Expression Matching.cs" />
     <Compile Include="src\011 Container With Most Water.cs" />
     <Compile Include="src\014 Longest Common Prefix.cs" />
-    <Compile Include="src\015 3Sum.cs" />
+    <Compile Include="srcNew\015 3Sum.cs" />
     <Compile Include="src\016 3Sum Closest.cs" />
-    <Compile Include="src\018 4Sum.cs" />
+    <Compile Include="srcNew\018 4Sum.cs" />
     <Compile Include="src\019 Remove Nth Node From End of List.cs" />
     <Compile Include="src\020 Valid Parentheses.cs" />
     <Compile Include="src\021 Merge Two Sorted Lists.cs" />

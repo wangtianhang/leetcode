@@ -130,13 +130,13 @@ namespace leetCode
             for (int i = 0; i < len - 2; i++)
             {
                 if (i > 0 && nums[i] == nums[i - 1]) continue;
-                find(nums, i + 1, len - 1, nums[i]); //寻找两个数与num[i]的和为0  
+                find2(nums, i + 1, len - 1, nums[i]); //寻找两个数与num[i]的和为0  
             }
 
             return m_ret.ToArray();
         }
 
-        public void find(int[] nums, int begin, int end, int target)
+        public void find2(int[] nums, int begin, int end, int target)
         {
             int l = begin, r = end;
             while (l < r)
